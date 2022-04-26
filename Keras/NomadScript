@@ -1,0 +1,42 @@
+job "DEMO-Keras" {
+  datacenters = ["ulanc-gpu"]
+  group "Keras" {
+    task "Cog" {
+      driver = "docker"    
+      config {
+        image_pull_timeout="10m"
+        image = "<repo>/<user>/<Name>:main" 
+        auth {                             
+      		username = "<user>"
+      		password = "<pwd>"
+    		}
+      }
+      resources { 
+        device "nvidia/gpu" {
+          count=1           
+        }
+        network {
+          mbits = 10
+          port "http" {
+            static = 5000
+          }
+        }
+      }
+      service {
+        name = "COG"
+        port = "http"
+        tags = [
+          "test",
+          "Demo",
+          "keras"
+        ]
+        check {
+          type     = "http"
+          interval = "2s"
+          timeout  = "2s"
+        }
+      }
+    }
+  }
+}
+
