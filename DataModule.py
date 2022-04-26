@@ -35,6 +35,9 @@ class Preprocessor():
         features["labels"] = example_batch["label"]
 
         return features
+   def postprocess(self,output):
+        print(output)
+        return output
 class GLUEDataModule(LightningDataModule):
 
     task_text_field_map = {
