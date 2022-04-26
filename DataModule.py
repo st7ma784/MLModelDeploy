@@ -15,8 +15,11 @@ AVAIL_GPUS = min(1, torch.cuda.device_count())
 class Preprocessor():
     def __init__(
         self,
-        model_name_or_path: str
+        model_name_or_path: str,
+        text_fields: List,
+        max_seq_length: int=164,
     ):
+        self.max_seq_length=max_seq_length
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_or_path, use_fast=True)
     def preprocess(self, example_batch, indices=None):
 
