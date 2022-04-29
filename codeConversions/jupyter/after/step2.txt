@@ -1,0 +1,7 @@
+in this step we attack the logic of our training loop.
+we've tidied a few things up, like instead of manual splits, using the Distributed Samplers
+
+Whilst the caching of runs is reasonably efficient re: parameters,
+ it's not very efficient re: data storage/memory and this will be messy on bigger datasets
+
+Therefore we've removed some of the lists of parameters, opting for duplicate models

@@ -1,0 +1,10 @@
+We've split up the encoder model for clarity when defining it, 
+but have left in a combined model for legacy support.
+
+The next steps are to look at better approaches with forward hooks. 
+
+
+We can also reconsider how we're implementing our distributed system ->
+At the moment, it's a bit of a hack, but it's a good start. 
+We use a round robin between different loaders and sets of parameters 
+(we could reload params as per v1, but models is nicer for readability)

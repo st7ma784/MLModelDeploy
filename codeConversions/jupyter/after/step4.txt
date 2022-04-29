@@ -1,0 +1,10 @@
+Now we start building the pytorch_lightning script.
+
+Fundamentally, this alllows us to bulk up the training loop to many more users in parralell.
+BUT this also removes the need to keep writing ".to(device)" for every single model.
+
+Note that the "model" is a pytorch_lightning.LightningModule, which is a subclass of torch.nn.Module.
+We're also doing nothing about sampler(handled by pytorch_lightning) and dataloader(handled by pytorch_lightning).
+
+We also don't worry too much about the loss or when optimizers are created or run (handled by pytorch_lightning).
+
