@@ -1,13 +1,59 @@
 # MLModelDeploy
 A repo for barebones model development
 
-# Cog: Containers for machine learning
+## Ray + SLURM
+
+Ray uses a head + workers model, once your script works, ideally with PL, look at using the slurm launcher (needs to be called within cluster) (slurm-launch.py) to auto-generate SLURM scripts and launch. slurm-launch.py uses an underlying template (slurm-template.sh) and fills out placeholders given user input.
+
+Usage example
+If you want to utilize a multi-node cluster in slurm:
+'''
+python slurm-launch.py --exp-name test --command "python your_file.py" --num-nodes 3
+'''
+
+If you want to specify the computing node(s), just use the same node name(s) in the same format of the output of sinfo command:
+'''
+python slurm-launch.py --exp-name test --command "python your_file.py" --num-nodes 3 --node NODE_NAMES
+'''
+
+There are other options you can use when calling python slurm-launch.py:
+
+--exp-name: The experiment name. Will generate {exp-name}_{date}-{time}.sh and {exp-name}_{date}-{time}.log.
+
+--command: The command you wish to run. For example: rllib train XXX or python XXX.py.
+
+--num-gpus: The number of GPUs you wish to use in each computing node. Default: 0.
+
+--node (-w): The specific nodes you wish to use, in the same form as the output of sinfo. Nodes are automatically assigned if not specified.
+
+--num-nodes (-n): The number of nodes you wish to use. Default: 1.
+
+--partition (-p): The partition you wish to use. Default: “”, will use user’s default partition.
+
+--load-env: The command to setup your environment. For example: module load cuda/10.1. Default: “”.
+
+Note that the slurm-template.sh is compatible with both IPV4 and IPV6 ip address of the computing nodes.
+
+### Implementation
+Concretely, the (slurm-launch.py) does the following things:
+
+It automatically writes your requirements, e.g. number of CPUs, GPUs per node, the number of nodes and so on, to a sbatch script name {exp-name}_{date}-{time}.sh. Your command (--command) to launch your own job is also written into the sbatch script.
+
+Then it will submit the sbatch script to slurm manager via a new process.
+
+Finally, the python process will terminate itself and leaves a log file named {exp-name}_{date}-{time}.log to record the progress of your submitted command. At the mean time, the ray cluster and your job is running in the slurm cluster.
+
+### Known Networking Bugs:
+There are some known issues around multiple users and port number conflicts: 
+More details at [Ray+Slurm](https://docs.ray.io/en/master/cluster/slurm.html)
+
+## Cog: Containers for machine learning
 
 Cog is an open-source tool that lets you package machine learning models in a standard, production-ready container.
 
 You can deploy your packaged model to your own infrastructure, or to [Replicate](https://replicate.com/).
 
-## Highlights
+### Highlights
 
 - 📦 **Docker containers without the pain.** Writing your own `Dockerfile` can be a bewildering process. With Cog, you define your environment with a [simple configuration file](#how-it-works) and it generates a Docker image with all the best practices: Nvidia base images, efficient caching of dependencies, installing specific Python versions, sensible environment variable defaults, and so on.
 
