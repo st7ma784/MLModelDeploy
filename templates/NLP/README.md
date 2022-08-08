@@ -2,8 +2,17 @@
 Model.py defines the logical ML model,
 DataModule.py contains dataloading, including downloading and preprocessing steps. 
 
-predictor.py details how a final deployment with COG might use the model and make it available 
-## training
+predictor.py details how a final deployment with COG might use the model and make it available
+
+## Debug Model in Jupyter/Colab
+
+Open the train.ipnyb, you'll notice it pulls from a (your) git repo. 
+
+Effectively it replicates the trainscript, while letting you use the google/colab/ on prem GPUS. 
+
+This is particularly great for debugging TPU runs and memory leaks before big deployments. 
+
+## training Runs
 
 trainscript.py to debug the model
 trainsweep.py will define a HPARAM sweep with WandB
