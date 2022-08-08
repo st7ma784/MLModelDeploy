@@ -1,3 +1,23 @@
+# How to use
+Model.py defines the logical ML model,
+DataModule.py contains dataloading, including downloading and preprocessing steps. 
+
+predictor.py details how a final deployment with COG might use the model and make it available 
+## training
+
+trainscript.py to debug the model
+trainsweep.py will define a HPARAM sweep with WandB
+trainagent.py needs to be edited with that sweep id and when called, will run the training with that set of HPARAMS. 
+
+From the base dir, both trainscript.py and trainagent.py can be fed into the Slurm-launch.py scripts or references in the HEC scripts
+
+
+
+
+
+
+
+
 # Prediction interface reference
 
 This document defines the API of the `cog` Python module, which is used to define the interface for running predictions on your model.
