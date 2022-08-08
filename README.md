@@ -7,14 +7,21 @@ Ray uses a head + workers model, once your script works, ideally with PL, look a
 
 Usage example
 If you want to utilize a multi-node cluster in slurm:
-'''
+
+```
 python slurm-launch.py --exp-name test --command "python your_file.py" --num-nodes 3
-'''
+
+```
+
 
 If you want to specify the computing node(s), just use the same node name(s) in the same format of the output of sinfo command:
-'''
+
+```
+
 python slurm-launch.py --exp-name test --command "python your_file.py" --num-nodes 3 --node NODE_NAMES
-'''
+
+```
+
 
 There are other options you can use when calling python slurm-launch.py:
 
