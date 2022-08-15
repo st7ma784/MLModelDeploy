@@ -9,6 +9,8 @@ A repo for barebones model development:
 #### run relevant sbatch/.com scripts to run your main code blocks 
 
 
+###For Development Have a look at st7ma784/MLModelDev
+
 
 
     
