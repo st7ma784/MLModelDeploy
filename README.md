@@ -1,9 +1,19 @@
 # MLModelDeploy
-A repo for barebones model development
+A repo for barebones model development: 
+
+## Intended usage:
+#### Fork this repo,
+#### Change files to point to an external repo
+#### On HPC platforms, clone your forked repo,
+#### Use relevant setup folders to build your conda / software environments
+#### run relevant sbatch/.com scripts to run your main code blocks 
+
+
+
 
     
     
-## Ray + SLURM
+## Ray + SLURM : the expected architecture
 
 Ray uses a head + workers model, once your script works, ideally with PL, look at using the slurm launcher (needs to be called within cluster) (slurm-launch.py) to auto-generate SLURM scripts and launch. slurm-launch.py uses an underlying template (slurm-template.sh) and fills out placeholders given user input.
 
@@ -56,7 +66,7 @@ Finally, the python process will terminate itself and leaves a log file named {e
 There are some known issues around multiple users and port number conflicts: 
 More details at [Ray+Slurm](https://docs.ray.io/en/master/cluster/slurm.html)
 
-## Cog: Containers for machine learning
+## Cog: Containers for machine learning 
 
 Cog is an open-source tool that lets you package machine learning models in a standard, production-ready container.
 
