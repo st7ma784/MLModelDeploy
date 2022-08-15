@@ -1,6 +1,22 @@
-#BEDE 
 
-The Default Bede Directory structure is : 
+# Bede Cluster
+This repo is designed to upscale as far as the HEC and N8 BEDE CLuster, the latter uses SLURM but has the following directory structures :
+
+#### Project home directory
+/projects/<project>
+Intended for project files to be backed up (note: backups not currently in place)
+Modest performance
+A default quota of 20GB
+
+#### Project Lustre directory 
+/nobackup/projects/<project>
+Intended for bulk project files not requiring backup
+Fast performance
+No quota limitations
+By default, files created within a project area are readable and writable by all other members of that project.
+
+#### Home directory 
+   /users/<user>
 
 
 ## Software 
