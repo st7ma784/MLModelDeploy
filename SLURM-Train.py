@@ -1,28 +1,12 @@
 from test_tube.hpc import  Experiment, HyperOptArgumentParser, SlurmCluster
 
 import torch
-
-def train(hparams, *args):
-    """Train your awesome model.
-    :param hparams: The arguments to run the model with.
-    """
-    # Initialize experiments and track all the hyperparameters
-
-    # Save exp when /or rely on auto logging...
-    import train from myfile
-    train(hparams)
-
-
+from demoTrainScript import train
+from demoParser import parser
 if __name__ == '__main__':
-    # Set up our argparser and make the y_val tunable.
-    parser = HyperOptArgumentParser(strategy='random_search')
-    parser.add_argument('--test_tube_exp_name', default='my_test')
-    parser.add_argument('--log_path', default='$TMPDIR')#We'll assume HEC, 
-    parser.opt_list('--y_val',
-        default=12, options=[1, 2, 3, 4, 5, 6], tunable=True)
-    parser.opt_list('--x_val',
-        default=12, options=[20, 12, 30, 45], tunable=True)
-    hyperparams = parser.parse_args()
+   
+    argsparser = parser(strategy='random_search')
+    hyperparams = argsparser.parse_args()
 
     # Enable cluster training.
     cluster = SlurmCluster(
