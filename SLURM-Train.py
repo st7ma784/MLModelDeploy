@@ -1,6 +1,4 @@
-from test_tube.hpc import  Experiment, HyperOptArgumentParser, SlurmCluster
-
-import torch
+from test_tube.hpc import SlurmCluster
 from demoTrainScript import train
 from demoParser import parser
 if __name__ == '__main__':
