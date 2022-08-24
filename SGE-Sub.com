@@ -34,4 +34,4 @@ export NCCL_DEBUG_SUBSYS=ALL
 # Add a Wandb User key so that the run doesnt hang. 
 export wandb='40 char User key'
 
-python trainagent.py --data_dir $global_scratch/ms-coco-es
+python trainagent.py --data_dir $global_scratch/ms-coco-es --log_dir $TMPDIR
