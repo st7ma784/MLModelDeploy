@@ -43,4 +43,4 @@
 #SBATCH --partition=gpu
 #################
 source activate open-ce
-srun python3 /nobackup/projects/bdlan05/smander3/6DimCOCO/trainagent.py
+srun python3 /nobackup/projects/<Project>/$USER/<repo>/trainagent.py
